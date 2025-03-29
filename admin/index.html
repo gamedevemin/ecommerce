@@ -4,11 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Girişi - LUXBAG</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/admin.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Bootstrap CDN kullanıyoruz stylesheet için -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* Temel stiller direkt olarak sayfaya gömülü */
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .admin-login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .admin-login-logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .admin-login-logo h1 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+        .admin-login-form {
+            padding: 15px 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+        }
+        .admin-login-footer {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .admin-login-footer a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        #error-message {
+            color: red;
+            text-align: center;
+            margin: 10px 0;
+            display: none;
+        }
+    </style>
 </head>
-<body class="admin-body">
+<body>
     <div class="admin-login-container">
         <div class="admin-login-logo">
             <h1>LUXBAG</h1>
@@ -19,13 +74,13 @@
             <form id="admin-login-form">
                 <div class="form-group">
                     <label for="username">Kullanıcı Adı</label>
-                    <input type="text" id="username" required>
+                    <input type="text" id="username" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Şifre</label>
-                    <input type="password" id="password" required>
+                    <input type="password" id="password" class="form-control" required>
                 </div>
-                <div id="error-message" style="color: red; display: none;"></div>
+                <div id="error-message"></div>
                 <button type="submit" class="btn login-btn">Giriş Yap</button>
             </form>
             
@@ -36,7 +91,137 @@
         </div>
     </div>
     
-    <script type="text/javascript" src="../js/backend-api.js"></script>
-    <script type="text/javascript" src="js/admin-login.js"></script>
+    <!-- Inline JavaScript - Bu sayede MIME tipi hatalarını tamamen önleyeceğiz -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // DOM Elemanları
+            const loginForm = document.getElementById('admin-login-form');
+            
+            // Vercel ortamında olup olmadığını kontrol et
+            function isVercelEnvironment() {
+                return typeof window !== 'undefined' && 
+                      (window.location.hostname.endsWith('vercel.app') || 
+                       window.location.hostname === 'localhost' || 
+                       window.location.hostname === '127.0.0.1');
+            }
+            
+            // Banner ekle 
+            if (isVercelEnvironment()) {
+                const testBanner = document.createElement('div');
+                testBanner.textContent = 'VERCEL DEMO - Kullanıcı adı: admin / Şifre: admin123';
+                testBanner.style.backgroundColor = '#0070f3';
+                testBanner.style.color = '#fff';
+                testBanner.style.padding = '10px';
+                testBanner.style.textAlign = 'center';
+                testBanner.style.fontSize = '14px';
+                testBanner.style.fontWeight = 'bold';
+                document.body.prepend(testBanner);
+                
+                // Kullanıcı bilgilerini otomatik doldur
+                const usernameInput = document.getElementById('username');
+                const passwordInput = document.getElementById('password');
+                
+                if (usernameInput && passwordInput) {
+                    usernameInput.value = 'admin';
+                    passwordInput.value = 'admin123';
+                }
+            }
+            
+            // Giriş formunu dinle
+            if (loginForm) {
+                loginForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    const username = document.getElementById('username').value.trim();
+                    const password = document.getElementById('password').value.trim();
+                    const errorMessage = document.getElementById('error-message');
+                    const loginButton = loginForm.querySelector('button[type="submit"]');
+                    
+                    if (!username || !password) {
+                        if (errorMessage) {
+                            errorMessage.textContent = 'Lütfen kullanıcı adı ve şifre girin.';
+                            errorMessage.style.display = 'block';
+                        }
+                        return;
+                    }
+                    
+                    // Buton durumu
+                    if (loginButton) {
+                        loginButton.disabled = true;
+                        loginButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Giriş Yapılıyor...';
+                    }
+                    
+                    try {
+                        // Demo için basit doğrulama
+                        if (username === 'admin' && password === 'admin123') {
+                            // Giriş başarılı
+                            sessionStorage.setItem('adminLoggedIn', 'true');
+                            sessionStorage.setItem('adminUsername', username);
+                            sessionStorage.setItem('adminRole', 'admin');
+                            
+                            // Başarılı mesajı göster
+                            const successMessage = document.createElement('div');
+                            successMessage.textContent = 'Giriş başarılı. Yönlendiriliyorsunuz...';
+                            successMessage.style.color = '#28a745';
+                            successMessage.style.textAlign = 'center';
+                            successMessage.style.padding = '10px';
+                            
+                            // Mevcut hata mesajını kaldır
+                            if (errorMessage) {
+                                errorMessage.style.display = 'none';
+                            }
+                            
+                            // Formu gizle ve başarı mesajını göster
+                            loginForm.style.display = 'none';
+                            loginForm.parentNode.appendChild(successMessage);
+                            
+                            // Yönlendirme
+                            setTimeout(() => {
+                                window.location.href = 'dashboard.html';
+                            }, 1000);
+                        } else {
+                            throw new Error('Kullanıcı adı veya şifre hatalı');
+                        }
+                    } catch (error) {
+                        // Hata mesajı göster
+                        if (errorMessage) {
+                            errorMessage.textContent = error.message || 'Giriş yapılırken bir hata oluştu.';
+                            errorMessage.style.display = 'block';
+                        }
+                        
+                        // Buton durumunu sıfırla
+                        if (loginButton) {
+                            loginButton.disabled = false;
+                            loginButton.innerHTML = 'Giriş Yap';
+                        }
+                    }
+                });
+            }
+            
+            // Şifremi unuttum linki
+            const forgotPasswordLink = document.getElementById('forgot-password');
+            if (forgotPasswordLink) {
+                forgotPasswordLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Vercel ortamında şifremi unuttum fonksiyonu devre dışı
+                    if (isVercelEnvironment()) {
+                        alert('Bu işlev demo ortamında devre dışıdır.\nVercel demo için - Kullanıcı adı: admin / Şifre: admin123');
+                        return;
+                    }
+                    
+                    const username = document.getElementById('username').value.trim();
+                    
+                    if (!username) {
+                        alert('Lütfen önce kullanıcı adınızı girin.');
+                        return;
+                    }
+                    
+                    // Gerçek bir uygulamada, burada şifre sıfırlama maili gönderme API çağrısı yapılırdı
+                    alert(`${username} kullanıcısı için şifre sıfırlama bağlantısı gönderildi.`);
+                });
+            }
+        });
+    </script>
 </body>
 </html> 
