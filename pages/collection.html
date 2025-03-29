@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koleksiyon - Lüks Çanta Butik</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/collection.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <div class="logo">LUXBAG</div>
+            <div class="nav-icons">
+                <a href="#" id="search-icon"><i class="fas fa-search"></i></a>
+                <a href="cart.html"><i class="fas fa-shopping-bag"></i><span id="cart-count">0</span></a>
+                <a href="#" id="menu-toggle"><i class="fas fa-bars"></i></a>
+            </div>
+        </div>
+        <nav id="mobile-menu">
+            <ul>
+                <li><a href="../index.html">Ana Sayfa</a></li>
+                <li><a href="collection.html">Koleksiyon</a></li>
+                <li><a href="about.html">Hakkımızda</a></li>
+                <li><a href="contact.html">İletişim</a></li>
+                <li><a href="account.html">Hesabım</a></li>
+            </ul>
+        </nav>
+        <div id="search-bar">
+            <input type="text" placeholder="Ara...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+    </header>
+
+    <main>
+        <div class="collection-header">
+            <h1>Koleksiyon</h1>
+            <p>En özel tasarımlar, en kaliteli materyaller.</p>
+        </div>
+
+        <div class="collection-container">
+            <aside class="filter-sidebar">
+                <div class="filter-section">
+                    <h3>Kategoriler</h3>
+                    <ul class="filter-options">
+                        <li>
+                            <input type="checkbox" id="category-all" value="all" checked>
+                            <label for="category-all">Tümü</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="category-clutch" value="clutch">
+                            <label for="category-clutch">El Çantaları</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="category-shoulder" value="shoulder">
+                            <label for="category-shoulder">Omuz Çantaları</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="category-tote" value="tote">
+                            <label for="category-tote">Büyük Çantalar</label>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Fiyat Aralığı</h3>
+                    <div class="price-range">
+                        <input type="range" id="price-slider" min="0" max="5000" step="100" value="5000">
+                        <div class="price-values">
+                            <span>0 TL</span>
+                            <span id="price-value">5000 TL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3>Sırala</h3>
+                    <select id="sort-products">
+                        <option value="default">Varsayılan</option>
+                        <option value="price-low">Fiyat (Düşükten Yükseğe)</option>
+                        <option value="price-high">Fiyat (Yüksekten Düşüğe)</option>
+                        <option value="name-asc">İsim (A-Z)</option>
+                        <option value="name-desc">İsim (Z-A)</option>
+                    </select>
+                </div>
+
+                <button id="apply-filters" class="btn">Filtrele</button>
+            </aside>
+
+            <div class="products-grid" id="products-container">
+                <!-- JS ile doldurulacak -->
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>LUXBAG</h3>
+                <p>Lüks ve zarafeti bir araya getiren butik çanta mağazası.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Hızlı Linkler</h3>
+                <ul>
+                    <li><a href="../index.html">Ana Sayfa</a></li>
+                    <li><a href="collection.html">Koleksiyon</a></li>
+                    <li><a href="about.html">Hakkımızda</a></li>
+                    <li><a href="contact.html">İletişim</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>İletişim</h3>
+                <p>Email: info@luxbag.com</p>
+                <p>Telefon: +90 212 123 45 67</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 LUXBAG. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/backend-api.js"></script>
+    <script src="../js/products-db.js"></script>
+    <script src="../js/products.js"></script>
+    <script src="../js/collection.js"></script>
+</body>
+</html> 

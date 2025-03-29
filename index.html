@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lüks Çanta Butik</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <div class="logo">LUXBAG</div>
+            <div class="nav-icons">
+                <a href="#" id="search-icon"><i class="fas fa-search"></i></a>
+                <a href="pages/cart.html"><i class="fas fa-shopping-bag"></i><span id="cart-count">0</span></a>
+                <a href="#" id="menu-toggle"><i class="fas fa-bars"></i></a>
+            </div>
+        </div>
+        <nav id="mobile-menu">
+            <ul>
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="pages/collection.html">Koleksiyon</a></li>
+                <li><a href="pages/about.html">Hakkımızda</a></li>
+                <li><a href="pages/contact.html">İletişim</a></li>
+                <li><a href="pages/account.html">Hesabım</a></li>
+            </ul>
+        </nav>
+        <div id="search-bar">
+            <input type="text" placeholder="Ara...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Yeni Sezon Koleksiyonu</h1>
+                <p>Lüks ve zarafet bir arada</p>
+                <a href="pages/collection.html" class="btn">Şimdi Keşfet</a>
+            </div>
+        </section>
+
+        <section class="categories">
+            <h2>Kategoriler</h2>
+            <div class="category-container">
+                <div class="category-card">
+                    <img src="images/clutch.jpg" alt="El Çantaları">
+                    <h3>El Çantaları</h3>
+                    <a href="pages/collection.html?category=clutch" class="btn-small">Göster</a>
+                </div>
+                <div class="category-card">
+                    <img src="images/shoulder.jpg" alt="Omuz Çantaları">
+                    <h3>Omuz Çantaları</h3>
+                    <a href="pages/collection.html?category=shoulder" class="btn-small">Göster</a>
+                </div>
+                <div class="category-card">
+                    <img src="images/tote.jpg" alt="Büyük Çantalar">
+                    <h3>Büyük Çantalar</h3>
+                    <a href="pages/collection.html?category=tote" class="btn-small">Göster</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-products">
+            <h2>Öne Çıkan Ürünler</h2>
+            <div class="product-container" id="featured-products">
+                <!-- JS ile doldurulacak -->
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <h2>Yeniliklerden Haberdar Olun</h2>
+            <form id="newsletter-form">
+                <input type="email" placeholder="E-posta adresiniz" required>
+                <button type="submit" class="btn">Abone Ol</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>LUXBAG</h3>
+                <p>Lüks ve zarafeti bir araya getiren butik çanta mağazası.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Hızlı Linkler</h3>
+                <ul>
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="pages/collection.html">Koleksiyon</a></li>
+                    <li><a href="pages/about.html">Hakkımızda</a></li>
+                    <li><a href="pages/contact.html">İletişim</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>İletişim</h3>
+                <p>Email: info@luxbag.com</p>
+                <p>Telefon: +90 212 123 45 67</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 LUXBAG. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/backend-api.js"></script>
+    <script src="js/products-db.js"></script>
+    <script src="js/products.js"></script>
+</body>
+</html> 

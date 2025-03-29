@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontrol Paneli - LUXBAG</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="admin-body">
+    <div class="admin-dashboard">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>LUXBAG Admin</h2>
+            </div>
+            <div class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html" class="active">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Kontrol Paneli</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="products.html">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span>Ürünler</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Siparişler</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="customers.html">
+                            <i class="fas fa-users"></i>
+                            <span>Müşteriler</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="reviews.html">
+                            <i class="fas fa-star"></i>
+                            <span>Yorumlar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Ayarlar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Çıkış Yap</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        
+        <!-- Ana İçerik -->
+        <main class="admin-content">
+            <!-- Üst Bar -->
+            <div class="admin-topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="topbar-title">Kontrol Paneli</div>
+                </div>
+                <div class="topbar-right">
+                    <div class="admin-user">
+                        <span class="admin-user-name" id="admin-name">Admin</span>
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="admin-user-dropdown">
+                            <a href="profile.html">
+                                <i class="fas fa-user"></i> Profil
+                            </a>
+                            <a href="#" id="dropdown-logout">
+                                <i class="fas fa-sign-out-alt"></i> Çıkış Yap
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dashboard İstatistikler -->
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon blue">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="stat-details">
+                        <div class="stat-number" id="order-count">0</div>
+                        <div class="stat-title">Toplam Sipariş</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-details">
+                        <div class="stat-number" id="revenue">0,00 ₺</div>
+                        <div class="stat-title">Toplam Gelir</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="stat-details">
+                        <div class="stat-number" id="product-count">0</div>
+                        <div class="stat-title">Ürünler</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon red">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-details">
+                        <div class="stat-number" id="customer-count">0</div>
+                        <div class="stat-title">Müşteriler</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Son Siparişler -->
+            <div class="admin-card">
+                <div class="admin-card-header">
+                    <div class="admin-card-title">Son Siparişler</div>
+                    <div class="admin-card-actions">
+                        <a href="orders.html" class="admin-btn admin-btn-primary">
+                            <i class="fas fa-eye"></i> Tümünü Gör
+                        </a>
+                    </div>
+                </div>
+                <div class="admin-card-content">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Sipariş No</th>
+                                <th>Müşteri</th>
+                                <th>Tarih</th>
+                                <th>Tutar</th>
+                                <th>Durum</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-orders">
+                            <!-- JS ile doldurulacak -->
+                            <tr>
+                                <td colspan="6" class="text-center">Henüz sipariş bulunmuyor.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Stok Durumu -->
+            <div class="admin-card">
+                <div class="admin-card-header">
+                    <div class="admin-card-title">Stok Durumu</div>
+                    <div class="admin-card-actions">
+                        <a href="products.html" class="admin-btn admin-btn-primary">
+                            <i class="fas fa-eye"></i> Tümünü Gör
+                        </a>
+                    </div>
+                </div>
+                <div class="admin-card-content">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Ürün</th>
+                                <th>Kategori</th>
+                                <th>Fiyat</th>
+                                <th>Stok</th>
+                                <th>Durum</th>
+                            </tr>
+                        </thead>
+                        <tbody id="low-stock-products">
+                            <!-- JS ile doldurulacak -->
+                            <tr>
+                                <td colspan="5" class="text-center">Veri yükleniyor...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/products.js"></script>
+    <script src="../js/products-db.js"></script>
+    <script src="../js/backend-api.js"></script>
+    <script src="js/admin-common.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html> 

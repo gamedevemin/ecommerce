@@ -1,0 +1,26 @@
+{
+  "name": "luxury-bags",
+  "version": "1.0.0",
+  "description": "Lüks çanta e-ticaret platformu",
+  "main": "index.html",
+  "scripts": {
+    "start": "echo 'Ready for Vercel deployment' && exit 0"
+  },
+  "keywords": [
+    "e-commerce",
+    "luxury",
+    "bags",
+    "static",
+    "vercel"
+  ],
+  "author": "LuxBag Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/luxury-bags.git"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.x"
+  }
+} 
